@@ -1,0 +1,16 @@
+{
+  "name": "node-holidays",
+  "version": "1.0.0",
+  "scripts": {
+	"test": "coffee test/test.coffee"
+  },
+  "description": "",
+  "main": "index.js",
+  "author": "bender@false.cz",
+  "license": "ISC",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "ical": "^0.3.1",
+    "request": "^2.47.0"
+  }
+}
