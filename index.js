@@ -11,7 +11,7 @@ exports.locale = function (name) {
 
   var findAfter = function (date) {
     var h = find(date)
-    if(h) {
+    if (h) {
       var d = new Date(h.end);
       d.setSeconds(d.getSeconds() + 1);
       return findAfter(d);
@@ -19,9 +19,21 @@ exports.locale = function (name) {
     return date;
   }
 
+  var shiftByDays = function (date, days) {
+    var cur = new Date(date);
+
+    for (var i = 0; i < days; i++) {
+        cur.setDate(cur.getDate() + 1);
+        if (cur != findAfter(cur)) days++;
+    }
+
+    return cur;
+  }
+
   return {
     dates: cal,
     find: find,
-    findAfter: findAfter
+    findAfter: findAfter,
+    shiftByDays: shiftByDays
   }
 }
