@@ -19,12 +19,14 @@ exports.locale = function (name) {
     return date;
   }
 
-  var shiftByDays = function (date, days) {
+  var applyHolidays = function (date, shiftByDays, skipWeekdays) {
     var cur = new Date(date);
+    skipWeekdays = skipWeekdays || [0, 6]
 
-    for (var i = 0; i < days; i++) {
+    for (var i = 0; i < shiftByDays; i++) {
         cur.setDate(cur.getDate() + 1);
-        if (cur != findAfter(cur)) days++;
+        if (cur != findAfter(cur)) shiftByDays++;
+        else if (skipWeekdays.indexOf(cur.getDay()) > -1) shiftByDays++;
     }
 
     return cur;
@@ -34,6 +36,6 @@ exports.locale = function (name) {
     dates: cal,
     find: find,
     findAfter: findAfter,
-    shiftByDays: shiftByDays
+    applyHolidays: applyHolidays
   }
 }

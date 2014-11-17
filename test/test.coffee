@@ -21,25 +21,26 @@ cal = holidays.locale 'cz'
 
 [
 	["2015-12-15T00:00:00.000Z", "2015-12-15T00:00:00.000Z"]
-	["2015-09-28T21:59:00.000Z", "2015-09-29T21:59:00.000Z"]
-	["2014-12-24T21:59:00.000Z", "2014-12-27T21:59:00.000Z"]
-].forEach (range) ->
-	result = cal.findAfter(new Date range[0]).toISOString()
-	expected = range[1]
-	assert.equal result, expected, "findAfter #{result} != #{expected}"
+	["2015-09-28T21:59:00.000Z", "2015-09-28T22:00:01.000Z"]
+	["2014-12-24T21:59:00.000Z", "2014-12-26T23:00:01.000Z"]
+].forEach (testSet, idx) ->
+	[arg, expected] = testSet
+	result = cal.findAfter(new Date arg).toISOString()
+
+	assert.equal result, expected, "findAfter expected(#{idx}) #{expected} not #{result}"
 
 [
-	['2014-12-24T01:00:00.000Z', '2014-12-28T01:00:00.000Z']
-	['2014-12-23T01:00:00.000Z', '2014-12-28T01:00:00.000Z']
-	['2014-12-22T01:00:00.000Z', '2014-12-27T01:00:00.000Z']
+	['2014-12-24T01:00:00.000Z', '2014-12-30T01:00:00.000Z']
+	['2014-12-23T01:00:00.000Z', '2014-12-30T01:00:00.000Z']
+	['2014-12-22T01:00:00.000Z', '2014-12-29T01:00:00.000Z']
 	['2014-12-21T01:00:00.000Z', '2014-12-23T01:00:00.000Z']
 
-].forEach (range) ->
-	a = new Date range[0]
-	expected = new Date range[1]
+].forEach (testSet, idx) ->
+	[arg, expected] = testSet
+	expected = new Date expected
 
-	result = cal.shiftByDays a, 2
+	result = cal.applyHolidays (new Date arg), 2
 
-	assert.equal result.getTime(), expected.getTime(), "shiftByDays #{result} != #{expected}"
+	assert.equal result.getTime(), expected.getTime(), "applyHolidays expected(#{idx}) #{expected} not #{result}"
 
 
