@@ -2,7 +2,8 @@
   "name": "node-holidays",
   "version": "1.1.1",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register --require coffee-script  "
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register --require coffee-script  ",
+    "test-watch": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register -w --reporter dot --require coffee-script  "
   },
   "description": "",
   "main": "index.js",
@@ -13,6 +14,7 @@
     "coffee-script": "^1.8.0",
     "ical": "^0.3.1",
     "mocha": "^2.0.1",
+    "moment-timezone": "^0.2.5",
     "request": "^2.47.0"
   }
 }
