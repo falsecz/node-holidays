@@ -1,6 +1,6 @@
 {
   "name": "node-holidays",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register --require coffee-script  ",
     "test-watch": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register -w --reporter dot --require coffee-script  "
