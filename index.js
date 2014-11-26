@@ -1,3 +1,4 @@
+
 exports.locale = function (name) {
   var cal = require("./data/" + name + ".json");
   var find = function(date) {
@@ -80,10 +81,15 @@ exports.locale = function (name) {
     return d;
   }
 
+  var ensureBusinessDays = function (d, shiftByDays) {
+    return applyHolidays(d, shiftByDays, true);
+  }
+
+
   return {
     dates: cal,
     find: find,
     findAfter: findAfter,
-    applyHolidays: applyHolidays
+    ensureBusinessDays: ensureBusinessDays
   }
 }

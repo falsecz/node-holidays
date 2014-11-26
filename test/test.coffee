@@ -52,7 +52,7 @@ describe "apply holidays for 2-day long offer-time", ->
 	].forEach (testSet) ->
 		[arg, expected] = testSet
 		it "Move #{arg} to #{expected}", ->
-			result = cal.applyHolidays (moment(arg).toDate()), 2, yes
+			result = cal.ensureBusinessDays (moment(arg).toDate()), 2, yes
 			result = moment(result).format(FORMAT)
 			assert.equal expected, result
 
@@ -72,9 +72,9 @@ describe "apply holidays for 1-day long offer-time", ->
 		it "Move #{arg} to #{expected}", ->
 			expected = new Date expected
 
-			result = cal.applyHolidays (moment(arg).toDate()), 1, yes
+			result = cal.ensureBusinessDays (moment(arg).toDate()), 1
 
-			assert.equal result.getTime(), expected.getTime(), "applyHolidays #{expected} not #{result}"
+			assert.equal result.getTime(), expected.getTime(), "ensureBusinessDays #{expected} not #{result}"
 
 describe "apply holidays for 5-day long offer-time", ->
 	[
@@ -97,7 +97,7 @@ describe "apply holidays for 5-day long offer-time", ->
 		it "Move #{arg} to #{expected}", ->
 			expected = new Date expected
 
-			result = cal.applyHolidays (moment(arg).toDate()), 5, yes
+			result = cal.ensureBusinessDays (moment(arg).toDate()), 5
 
 			assert.equal result.getTime(), expected.getTime(), "applyHolidays expected(#{idx}) #{expected} not #{result}"
 
